@@ -97,7 +97,7 @@ g.add_edge(1,2)
 graph_set.append(g)
 
 st.subheader('The set of three node undirected graphs')
-st.write('Graph titles are the values of the three network statistics used in this analysis:')
+st.write('Graph titles include the values of the three network statistics used in this analysis:')
 st.write('- Number of edges')
 st.write('- Number of isolates')
 st.write('- Number of triangles')
@@ -110,7 +110,7 @@ gs = GridSpec(2, 4, figure=fig)
 for i,g in enumerate(graph_set):
     ax = fig.add_subplot(gs[i//4,i%4])
     nx.draw_networkx(g,node_color='pink')
-    title = str(get_edges(g)) + ', ' + str(get_isolates(g)) + \
+    title = 'Graph ' + str(i) + ' ' + str(get_edges(g)) + ', ' + str(get_isolates(g)) + \
         ', ' + str(get_triangles(g))
     ax.set_title(title)
 st.pyplot(fig)
