@@ -232,6 +232,43 @@ ax.set_zlabel('Probability of graph')
 st.pyplot(fig)
 
 
+st.subheader('Joint distributions for edge and triangle statistics for all graphs.')
 
+statistics = [get_edges,get_isolates,get_triangles]
+non_zero_coeff_values = np.arange(0,1.1,0.1)
+
+fig = plt.figure(figsize=(20,20))
+
+gs = GridSpec(4, 2, figure=fig)
+
+for k,g in enumerate(graph_set):
+
+    matrix = np.zeros((len(non_zero_coeff_values),len(non_zero_coeff_values)))
+
+
+    for i,x in enumerate(non_zero_coeff_values):
+        for j,y in enumerate(non_zero_coeff_values):
+            coefficients = [x,0,y]
+            denom = get_ergm_denominator(graph_set, coefficients, statistics)
+            numerator = get_ergm_weight(g, coefficients, statistics)
+            pr = round(numerator/denom,3)
+            matrix[i,j] = pr
+
+    m,n = matrix.shape
+    ax = fig.add_subplot(gs[k%4,k//4],projection='3d')
+
+    #ax = plt.axes(projection='3d')
+    X, Y = np.meshgrid(non_zero_coeff_values, non_zero_coeff_values)
+    p = ax.plot_surface(X, Y, matrix, rstride=1, cstride=1, cmap='viridis', edgecolor='none',\
+                        antialiased=False,vmin=0,vmax=1.0)
+    ax.set_zlim(0,1)
+    ax.set_xlabel('Edges coefficient')
+    ax.set_ylabel('Triangles coefficient')
+    ax.set_zlabel('Probability of graph')
+    ax.set_title('Graph: ' + str(k))
+    #cbar = fig.colorbar(p,ax=ax)
+    #cbar.set_label('Probability of graph', rotation=270)
+
+st.pyplot(fig)
 
 
