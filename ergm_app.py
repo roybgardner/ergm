@@ -116,7 +116,7 @@ for i,g in enumerate(graph_set):
 st.pyplot(fig)
 
 
-st.subheader('Probability of observing a graph from the set of graphs')
+st.subheader('Probability of observing a graph from the set of graphs given some coefficient values')
 st.write('The superheader shows the coefficient values for the three statistics:')
 st.write('Edges = 1.0')
 st.write('Isolates = 0.0')
@@ -184,6 +184,52 @@ pr_analysis(coeff_values,non_zero_coeff_values,statistics,'Isolates')
 
 coeff_values = list(zip(zero_values,zero_values,non_zero_coeff_values))
 pr_analysis(coeff_values,non_zero_coeff_values,statistics,'Triangles')
+
+
+st.subheader('Joint distributions for edge and triangle statistics for graph 7.')
+
+statistics = [get_edges,get_isolates,get_triangles]
+
+g = graph_set[7]
+
+
+non_zero_coeff_values = np.arange(0,1.1,0.1)
+
+matrix = np.zeros((len(non_zero_coeff_values),len(non_zero_coeff_values)))
+
+
+for i,x in enumerate(non_zero_coeff_values):
+    for j,y in enumerate(non_zero_coeff_values):
+        coefficients = [x,0,y]
+        denom = get_ergm_denominator(graph_set, coefficients, statistics)
+        numerator = get_ergm_weight(g, coefficients, statistics)
+        pr = round(numerator/denom,3)
+        matrix[i,j] = pr
+
+
+plt.imshow(matrix)
+plt.colorbar()
+plt.ylabel('Edges coefficent')
+plt.xlabel('Triangles coefficent')
+#plt.clim(0,1)
+
+plt.show()
+
+m,n = matrix.shape
+fig = plt.figure(figsize=(16, 8))
+ax = plt.axes(projection='3d')
+X, Y = np.meshgrid(non_zero_coeff_values, non_zero_coeff_values)
+p = ax.plot_surface(X, Y, matrix, rstride=1, cstride=1, cmap='viridis', edgecolor='none',\
+                    antialiased=False,vmin=0,vmax=1.0)
+ax.set_zlim(0,1)
+ax.set_xlabel('Edges coefficient')
+ax.set_ylabel('Triangles coefficient')
+ax.set_zlabel('Probability of graph')
+#cbar = fig.colorbar(p,ax=ax)
+#cbar.set_label('Probability of graph', rotation=270)
+
+st.pyplot(fig)
+
 
 
 
