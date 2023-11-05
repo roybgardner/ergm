@@ -46,7 +46,7 @@ def coeffs_to_string(coefficients):
             s += ', '
     return s
         
-st.title('Exploring ERGMs')
+st.header('Exploring ERGMs')
     
 # Build the set of three node graphs as a sample set for denominator calculation
 # This needs to be sensible
@@ -96,7 +96,7 @@ g.add_edge(0,2)
 g.add_edge(1,2)
 graph_set.append(g)
 
-st.header('The set of three node undirected graphs')
+st.subheader('The set of three node undirected graphs')
 st.write('Graph titles are the values of the three network statistics used in this analysis:')
 st.write('- Number of edges')
 st.write('- Number of isolates')
@@ -116,7 +116,7 @@ for i,g in enumerate(graph_set):
 st.pyplot(fig)
 
 
-st.header('Probability of observing a graph from the set of graphs')
+st.subheader('Probability of observing a graph from the set of graphs')
 st.write('The superheader shows the coefficient values for the three statistics:')
 st.write('Edges = 1.0')
 st.write('Isolates = 0.0')
@@ -142,3 +142,49 @@ for i,g in enumerate(graph_set):
     
 fig.suptitle(coeffs_to_string(coefficients))
 st.pyplot(fig)
+
+st.subheader('Effects of coefficient of single statistic on probability of observing a graph.')
+
+def pr_analysis(coeff_values,non_zero_coeff_values,statistics,label):    
+    pr_dict = {}
+    for t in coeff_values:
+        # Other coefficients are 0
+        coefficients = [t[0],t[1],t[2]]
+        denom = get_ergm_denominator(graph_set, coefficients, statistics)
+
+        for i,g in enumerate(graph_set):
+            numerator = get_ergm_weight(g, coefficients, statistics)
+            pr = round(numerator/denom,3)
+            if i in pr_dict:
+                pr_dict[i].append(pr)
+            else:
+                pr_dict[i] = [pr]
+    fig = plt.figure(figsize=(8,4),layout="constrained")
+    x = non_zero_coeff_values
+    for k,v in pr_dict.items():
+        plt.plot(x,v,label=str(k))
+        plt.scatter(x,v)
+    #plt.ylim(0,1)
+    plt.xlabel('Value of ' + label + ' statistic coefficient')
+    plt.ylabel('Pr of graph')
+    plt.legend()
+    plt.title(label)
+    st.pyplot(fig)
+
+statistics = [get_edges,get_isolates,get_triangles]
+
+non_zero_coeff_values = np.arange(0,1.1,0.1)
+zero_values = np.zeros(len(non_zero_coeff_values))
+
+coeff_values = list(zip(non_zero_coeff_values,zero_values,zero_values))
+pr_analysis(coeff_values,non_zero_coeff_values,statistics,'Edges')
+
+coeff_values = list(zip(zero_values,non_zero_coeff_values,zero_values))
+pr_analysis(coeff_values,non_zero_coeff_values,statistics,'Isolates')
+
+coeff_values = list(zip(zero_values,zero_values,non_zero_coeff_values))
+pr_analysis(coeff_values,non_zero_coeff_values,statistics,'Triangles')
+
+
+
+
