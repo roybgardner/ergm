@@ -1,6 +1,5 @@
 import streamlit as st
 import itertools
-import matplotlib.colors
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
@@ -49,3 +48,62 @@ def coeffs_to_string(coefficients):
         
 st.markdown('<p class="maintitle">Exploring ERGM</p>', unsafe_allow_html=True)
     
+# Build the set of three node graphs as a sample set for denominator calculation
+# This needs to be sensible
+
+graph_set = []
+g = nx.Graph()
+g.add_nodes_from([0,1,2])
+graph_set.append(g)
+
+g = nx.Graph()
+g.add_nodes_from([0,1,2])
+g.add_edge(0,1)
+graph_set.append(g)
+
+g = nx.Graph()
+g.add_nodes_from([0,1,2])
+g.add_edge(0,2)
+graph_set.append(g)
+
+g = nx.Graph()
+g.add_nodes_from([0,1,2])
+g.add_edge(1,2)
+graph_set.append(g)
+
+g = nx.Graph()
+g.add_nodes_from([0,1,2])
+g.add_edge(0,1)
+g.add_edge(0,2)
+graph_set.append(g)
+
+g = nx.Graph()
+g.add_nodes_from([0,1,2])
+g.add_edge(0,1)
+g.add_edge(1,2)
+graph_set.append(g)
+
+g = nx.Graph()
+g.add_nodes_from([0,1,2])
+g.add_edge(0,2)
+g.add_edge(1,2)
+graph_set.append(g)
+
+g = nx.Graph()
+g.add_nodes_from([0,1,2])
+g.add_edge(0,1)
+g.add_edge(0,2)
+g.add_edge(1,2)
+graph_set.append(g)
+
+fig = plt.figure(figsize=(8,4),layout="constrained")
+
+gs = GridSpec(2, 4, figure=fig)
+
+for i,g in enumerate(graph_set):
+    ax = fig.add_subplot(gs[i//4,i%4])
+    nx.draw_networkx(g,node_color='pink')
+    title = str(get_edges(g)) + ', ' + str(get_isolates(g)) + \
+        ', ' + str(get_triangles(g))
+    ax.set_title(title)
+st.pyplot(fig)
