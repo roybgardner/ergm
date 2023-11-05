@@ -46,7 +46,7 @@ def coeffs_to_string(coefficients):
             s += ', '
     return s
         
-st.markdown('<p class="maintitle">Exploring ERGM</p>', unsafe_allow_html=True)
+st.title('Exploring ERGMs')
     
 # Build the set of three node graphs as a sample set for denominator calculation
 # This needs to be sensible
@@ -106,4 +106,25 @@ for i,g in enumerate(graph_set):
     title = str(get_edges(g)) + ', ' + str(get_isolates(g)) + \
         ', ' + str(get_triangles(g))
     ax.set_title(title)
+st.pyplot(fig)
+
+coefficients = [1.0,0.0,1.0]
+statistics = [get_edges,get_isolates,get_triangles]
+
+fig = plt.figure(figsize=(8,4),layout="constrained")
+
+gs = GridSpec(2, 4, figure=fig)
+
+denom = get_ergm_denominator(graph_set, coefficients, statistics)
+
+for i,g in enumerate(graph_set):
+    numerator = get_ergm_weight(g, coefficients, statistics)
+    pr = round(numerator/denom,3)
+
+    ax = fig.add_subplot(gs[i//4,i%4])
+    nx.draw_networkx(g,node_color='pink')
+    title = 'Graph ' + str(i) + ' Pr = ' + str(pr)
+    ax.set_title(title)
+    
+fig.suptitle(coeffs_to_string(coefficients))
 st.pyplot(fig)
