@@ -96,6 +96,13 @@ g.add_edge(0,2)
 g.add_edge(1,2)
 graph_set.append(g)
 
+st.header('The set of three node undirected graphs')
+st.write('Graph titles are the values of the three network statistics used in this analysis:')
+st.write('- Number of edges')
+st.write('- Number of isolates')
+st.write('- Number of triangles')
+
+
 fig = plt.figure(figsize=(8,4),layout="constrained")
 
 gs = GridSpec(2, 4, figure=fig)
@@ -107,6 +114,13 @@ for i,g in enumerate(graph_set):
         ', ' + str(get_triangles(g))
     ax.set_title(title)
 st.pyplot(fig)
+
+
+st.header('Probability of observing a graph from the set of graphs')
+st.write('The superheader shows the coefficient values for the three statistics:')
+st.write('Edges = 1.0')
+st.write('Isolates = 0.0')
+st.write('Triangles = 1.0')
 
 coefficients = [1.0,0.0,1.0]
 statistics = [get_edges,get_isolates,get_triangles]
