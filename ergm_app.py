@@ -207,13 +207,14 @@ for i,x in enumerate(non_zero_coeff_values):
         matrix[i,j] = pr
 
 
+fig = plt.figure(figsize=(8, 8))
 plt.imshow(matrix)
 plt.colorbar()
 plt.ylabel('Edges coefficent')
 plt.xlabel('Triangles coefficent')
 #plt.clim(0,1)
 
-plt.show()
+st.pyplot(fig)
 
 m,n = matrix.shape
 fig = plt.figure(figsize=(16, 8))
