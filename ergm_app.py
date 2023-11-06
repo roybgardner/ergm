@@ -171,7 +171,7 @@ fig.suptitle(coeffs_to_string(coefficients))
 st.pyplot(fig)
 
 st.subheader('Effects of coefficient of single statistic on probability of observing a graph.')
-st.write('The coeeficients of the other two statistics are set to zero.')
+st.write('The coefficients of the other two statistics are set to zero.')
 
 
 statistics = [get_edges,get_isolates,get_triangles]
