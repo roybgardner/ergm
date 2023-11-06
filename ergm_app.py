@@ -225,51 +225,60 @@ coeff_values = list(zip(zero_values,zero_values,non_zero_coeff_values))
 pr_analysis(coeff_values,non_zero_coeff_values,statistics,'Triangles')
 
 
-st.subheader('Joint distributions for edge and triangle statistics for graph 7.')
-
-statistics = [get_edges,get_isolates,get_triangles]
-
-g = graph_set[7]
+with st.form("joint_7"):
+    st.subheader('Joint distributions pairs of statistics for graph 7.')
 
 
-non_zero_coeff_values = np.arange(0,1.1,0.1)
+    joint=["Edges-Triangles", "Edges-Isolates", "Isolates-Triangles"]
+    select_operator=st.radio("Select pair", joint, index=0, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, horizontal=False, captions=None, label_visibility="visible")
 
-matrix = np.zeros((len(non_zero_coeff_values),len(non_zero_coeff_values)))
+    submitted = st.form_submit_button("Submit")
+    if submitted:
+        statistics = [get_edges,get_isolates,get_triangles]
+        g = graph_set[7]
+        non_zero_coeff_values = np.arange(0,1.1,0.1)
+        zero_values = np.zeros(len(non_zero_coeff_values))
+
+        matrix = np.zeros((len(non_zero_coeff_values),len(non_zero_coeff_values)))
+        for i,x in enumerate(non_zero_coeff_values):
+            for j,y in enumerate(non_zero_coeff_values):
+                if joint == "Edges-Triangles":
+                    coefficients = [x,0,y]
+                elif joint == "Edges-Isolates":
+                    coefficients = [x,y,0]
+                elif joint == "Isolates-Triangles":
+                    coefficients = [0,x,y]
+
+                denom = get_ergm_denominator(graph_set, coefficients, statistics)
+                numerator = get_ergm_weight(g, coefficients, statistics)
+                pr = round(numerator/denom,3)
+                matrix[i,j] = pr
 
 
-for i,x in enumerate(non_zero_coeff_values):
-    for j,y in enumerate(non_zero_coeff_values):
-        coefficients = [x,0,y]
-        denom = get_ergm_denominator(graph_set, coefficients, statistics)
-        numerator = get_ergm_weight(g, coefficients, statistics)
-        pr = round(numerator/denom,3)
-        matrix[i,j] = pr
+        fig = plt.figure(figsize=(8, 8))
+        plt.imshow(matrix)
+        plt.colorbar()
+        plt.ylabel('Edges coefficent')
+        plt.xlabel('Triangles coefficent')
+        #plt.clim(0,1)
 
+        st.pyplot(fig)
 
-fig = plt.figure(figsize=(8, 8))
-plt.imshow(matrix)
-plt.colorbar()
-plt.ylabel('Edges coefficent')
-plt.xlabel('Triangles coefficent')
-#plt.clim(0,1)
+        m,n = matrix.shape
+        fig = plt.figure(figsize=(16, 8))
+        ax = plt.axes(projection='3d')
+        X, Y = np.meshgrid(non_zero_coeff_values, non_zero_coeff_values)
+        p = ax.plot_surface(X, Y, matrix, rstride=1, cstride=1, cmap='viridis', edgecolor='none',\
+                            antialiased=False,vmin=0,vmax=1.0)
+        ax.set_zlim(0,1)
+        ax.set_xlabel(joint.split('-')[0] + ' coefficient')
+        ax.set_ylabel(joint.split('-')[1] + ' coefficient')
+        ax.set_zlabel('Probability of graph')
+        ax.set_box_aspect(aspect=None, zoom=0.8)
+        #cbar = fig.colorbar(p,ax=ax)
+        #cbar.set_label('Probability of graph', rotation=270)
 
-st.pyplot(fig)
-
-m,n = matrix.shape
-fig = plt.figure(figsize=(16, 8))
-ax = plt.axes(projection='3d')
-X, Y = np.meshgrid(non_zero_coeff_values, non_zero_coeff_values)
-p = ax.plot_surface(X, Y, matrix, rstride=1, cstride=1, cmap='viridis', edgecolor='none',\
-                    antialiased=False,vmin=0,vmax=1.0)
-ax.set_zlim(0,1)
-ax.set_xlabel('Edges coefficient')
-ax.set_ylabel('Triangles coefficient')
-ax.set_zlabel('Probability of graph')
-ax.set_box_aspect(aspect=None, zoom=0.8)
-#cbar = fig.colorbar(p,ax=ax)
-#cbar.set_label('Probability of graph', rotation=270)
-
-st.pyplot(fig)
+        st.pyplot(fig)
 
 
 st.subheader('Joint distributions for edge and triangle statistics for all graphs.')
