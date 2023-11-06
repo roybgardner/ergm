@@ -246,7 +246,7 @@ for i,x in enumerate(non_zero_coeff_values):
         matrix[i,j] = pr
 
 
-fig = plt.figure(figsize=(8, 8))
+fig = plt.figure(figsize=(4, 4))
 plt.imshow(matrix)
 plt.colorbar()
 plt.ylabel('Edges coefficent')
@@ -256,7 +256,7 @@ plt.xlabel('Triangles coefficent')
 st.pyplot(fig)
 
 m,n = matrix.shape
-fig = plt.figure(figsize=(16, 8))
+fig = plt.figure(figsize=(8, 4))
 ax = plt.axes(projection='3d')
 X, Y = np.meshgrid(non_zero_coeff_values, non_zero_coeff_values)
 p = ax.plot_surface(X, Y, matrix, rstride=1, cstride=1, cmap='viridis', edgecolor='none',\
