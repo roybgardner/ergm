@@ -174,7 +174,7 @@ with st.form("coefficients"):
     st.write('Number of edges')
     st.write('Number of isolates')
     st.write('Number of triangles')
-    st.write('In the default condition all coefficient values are set to zero and all graphs in the set are equally likely to be observed, i.e., ~$Pr(g|G)=\frac{1}{8}=0.125$')
+    st.write('In the default condition all coefficient values are set to zero and all graphs in the set are equally likely to be observed, i.e., $Pr(g|G)=\frac{1}{8}=0.125$')
    
     statistics = [get_edges,get_isolates,get_triangles]
 
