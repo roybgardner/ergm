@@ -170,12 +170,12 @@ st.pyplot(fig)
 
 with st.form("coefficients"):
     st.subheader('Probability of observing a graph from the set of 3-node graphs given some coefficient values')
-    st.write('The superheader shows the coefficient values for the three statistics:')
-    st.write('Edges = 1.0')
-    st.write('Isolates = 0.0')
-    st.write('Triangles = 1.0')
-
-    
+    st.write('Use the form below to set the coefficient values for three network statistics:')   
+    st.write('Number of edges')
+    st.write('Number of isolates')
+    st.write('Number of triangles')
+    st.write('In the default condition all coefficient values are set to zero and all graphs in the set are equally likely to be observed, i.e., ~$Pr(g|G)=\frac{1}{8}=0.125$')
+   
     statistics = [get_edges,get_isolates,get_triangles]
 
     edges=st.slider("Select edges coefficient", min_value=0, max_value=1, value=0, step=None, format=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible")
@@ -202,7 +202,6 @@ with st.form("coefficients"):
             title = 'Graph ' + str(i) + ' Pr = ' + str(pr)
             ax.set_title(title)
             
-        fig.suptitle(coeffs_to_string(coefficients))
         st.pyplot(fig)
 
 st.subheader('Effects of coefficient of single statistic on probability of observing a graph.')
