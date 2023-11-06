@@ -229,8 +229,8 @@ with st.form("joint_7"):
     st.subheader('Joint distributions pairs of statistics for graph 7.')
 
 
-    joint=["Edges-Triangles", "Edges-Isolates", "Isolates-Triangles"]
-    select_operator=st.radio("Select pair", joint, index=0, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, horizontal=False, captions=None, label_visibility="visible")
+    joint_options=["Edges-Triangles", "Edges-Isolates", "Isolates-Triangles"]
+    select_joint=st.radio("Select pair", joint, index=0, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, horizontal=False, captions=None, label_visibility="visible")
 
     submitted = st.form_submit_button("Submit")
     if submitted:
@@ -242,11 +242,11 @@ with st.form("joint_7"):
         matrix = np.zeros((len(non_zero_coeff_values),len(non_zero_coeff_values)))
         for i,x in enumerate(non_zero_coeff_values):
             for j,y in enumerate(non_zero_coeff_values):
-                if joint == "Edges-Triangles":
+                if select_joint == "Edges-Triangles":
                     coefficients = [x,0,y]
-                elif joint == "Edges-Isolates":
+                elif select_joint == "Edges-Isolates":
                     coefficients = [x,y,0]
-                elif joint == "Isolates-Triangles":
+                elif select_joint == "Isolates-Triangles":
                     coefficients = [0,x,y]
 
                 denom = get_ergm_denominator(graph_set, coefficients, statistics)
