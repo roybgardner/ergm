@@ -265,7 +265,7 @@ ax.set_zlim(0,1)
 ax.set_xlabel('Edges coefficient')
 ax.set_ylabel('Triangles coefficient')
 ax.set_zlabel('Probability of graph')
-ax.dist = 13
+ax.set_box_aspect(aspect=None, zoom=0.8)
 #cbar = fig.colorbar(p,ax=ax)
 #cbar.set_label('Probability of graph', rotation=270)
 
