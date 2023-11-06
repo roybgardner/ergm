@@ -172,10 +172,7 @@ st.pyplot(fig)
 
 with st.form("coefficients"):
     st.subheader('Probability of observing a graph from the set of 3-node graphs given some coefficient values')
-    st.write('Use the form below to set the coefficient values for the three network statistics:')   
-    st.write('Number of edges')
-    st.write('Number of isolates')
-    st.write('Number of triangles')
+    st.write('Use the form below to set the coefficient values for the three network statistics.')   
     st.write('In the default condition, all coefficient values are set to zero and all graphs in the set are equally likely to be observed, i.e., $Pr(g|G)=0.125$')
    
     statistics = [get_edges,get_isolates,get_triangles]
