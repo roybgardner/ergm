@@ -16,8 +16,8 @@ def get_edges(graph):
     return len(graph.edges())
 
 def get_triangles(graph):
-    # Returns the number of vertices in triangles
-    return sum(nx.triangles(graph).values())
+    # Returns the number of triangles
+    return sum(nx.triangles(graph).values())/3
 
 def get_isolates(graph):
     # Vertices without any edges to other vertices
@@ -152,7 +152,7 @@ st.subheader('The set of 3-vertex undirected graphs')
 st.write('Graph titles include the values of the three network statistics used in this analysis:')
 st.write('- Number of edges')
 st.write('- Number of isolates')
-st.write('- Number of triangles (measured as the number of vertices in triangles)')
+st.write('- Number of triangles')
 
 
 fig = plt.figure(figsize=(8,4),layout="constrained")
