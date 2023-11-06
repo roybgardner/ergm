@@ -94,7 +94,7 @@ st.write('Combines a set of network statistics ${s_1,s_2,…,s_N}$ in proportion
 st.write('If the coefficient values are set to zero then:')
 
 st.latex(r'''
-    pr(g|G) = \frac{e^0}{\sum\limits_{g=1}^{|G|}\e^0)} = \frac{1}{|G|}}
+    pr(g|G) = \frac{e^0}{\sum\limits_{g=1}^{|G|}e^0)} = \frac{1}{|G|}
     ''')
 
    
