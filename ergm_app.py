@@ -124,9 +124,9 @@ st.header('Exploring ERGMs')
 
 st.subheader('Introduction')
 
-st.write('This app is an attempt to understand and explore ERGMs using a set of 3-node undirected graphs as an example. This set has been chosen because it\'s tractable and can be visualised.\
-         There are eight graphs in the set (see below). As the number of nodes increases the number of graphs grows rapidly to the point where the denominator in the equation below cannot be computed.\
-         The number of graphs is $2^{(n\\times(n-1))/2}$ where $n$ is the number of nodes.')
+st.write('This app is an attempt to understand and explore ERGMs using a set of 3-vertex undirected graphs as an example. This set has been chosen because it\'s tractable and can be visualised.\
+         There are eight graphs in the set (see below). As the number of vertices increases the number of graphs grows rapidly to the point where the denominator in the equation below cannot be computed.\
+         The number of graphs is $2^{(n\\times(n-1))/2}$ where $n$ is the number of vertices.')
 
 st.write('The probability of observing a graph $g$ that belongs to a set of graphs $G$ is given by:')
 
@@ -171,7 +171,7 @@ st.pyplot(fig)
 
 
 with st.form("coefficients"):
-    st.subheader('Probability of observing a graph from the set of 3-node graphs given some coefficient values')
+    st.subheader('Probability of observing a graph from the set of 3-vertex graphs given some coefficient values')
     st.write('Use the form below to set the coefficient values for the three network statistics.')   
     st.write('In the default condition, all coefficient values are set to zero and all graphs in the set are equally likely to be observed, i.e., $Pr(g|G)=0.125$')
    
