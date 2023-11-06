@@ -168,32 +168,42 @@ for i,g in enumerate(graph_set):
 st.pyplot(fig)
 
 
-st.subheader('Probability of observing a graph from the set of 3-node graphs given some coefficient values')
-st.write('The superheader shows the coefficient values for the three statistics:')
-st.write('Edges = 1.0')
-st.write('Isolates = 0.0')
-st.write('Triangles = 1.0')
+with st.form("coefficients"):
+    st.subheader('Probability of observing a graph from the set of 3-node graphs given some coefficient values')
+    st.write('The superheader shows the coefficient values for the three statistics:')
+    st.write('Edges = 1.0')
+    st.write('Isolates = 0.0')
+    st.write('Triangles = 1.0')
 
-coefficients = [1.0,0.0,1.0]
-statistics = [get_edges,get_isolates,get_triangles]
-
-fig = plt.figure(figsize=(8,4),layout="constrained")
-
-gs = GridSpec(2, 4, figure=fig)
-
-denom = get_ergm_denominator(graph_set, coefficients, statistics)
-
-for i,g in enumerate(graph_set):
-    numerator = get_ergm_weight(g, coefficients, statistics)
-    pr = round(numerator/denom,3)
-
-    ax = fig.add_subplot(gs[i//4,i%4])
-    nx.draw_networkx(g,node_color='pink')
-    title = 'Graph ' + str(i) + ' Pr = ' + str(pr)
-    ax.set_title(title)
     
-fig.suptitle(coeffs_to_string(coefficients))
-st.pyplot(fig)
+    statistics = [get_edges,get_isolates,get_triangles]
+
+    edges=st.slider("Select edges coefficient", min_value=0, max_value=1, value=0, step=None, format=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible")
+    isolates=st.slider("Select isolates coefficient", min_value=0, max_value=1, value=0, step=None, format=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible")
+    triangles=st.slider("Select triangles coefficient", min_value=0, max_value=1, value=0, step=None, format=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible")
+
+# Every form must have a submit button.
+    submitted = st.form_submit_button("Submit")
+    if submitted:
+
+        coefficients = [edges,isolates,triangles]
+        fig = plt.figure(figsize=(8,4),layout="constrained")
+
+        gs = GridSpec(2, 4, figure=fig)
+
+        denom = get_ergm_denominator(graph_set, coefficients, statistics)
+
+        for i,g in enumerate(graph_set):
+            numerator = get_ergm_weight(g, coefficients, statistics)
+            pr = round(numerator/denom,3)
+
+            ax = fig.add_subplot(gs[i//4,i%4])
+            nx.draw_networkx(g,node_color='pink')
+            title = 'Graph ' + str(i) + ' Pr = ' + str(pr)
+            ax.set_title(title)
+            
+        fig.suptitle(coeffs_to_string(coefficients))
+        st.pyplot(fig)
 
 st.subheader('Effects of coefficient of single statistic on probability of observing a graph.')
 st.write('The coefficients of the other two statistics are set to zero.')
