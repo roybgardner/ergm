@@ -75,10 +75,12 @@ def pr_analysis(coeff_values,non_zero_coeff_values,statistics,label):
         
 st.header('Exploring ERGMs')
 
+
 st.latex(r'''
     pr(g) \propto \exp(a_1s_1 + a_2s_2 + … + a_Ns_N)
     ''')
 
+st.write{'The probability of observing a graph $g$'}
 st.latex(r'''
     pr(g|G) = \frac{\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}{\sum\limits_{g=1}^{|G|}\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}
     ''')
