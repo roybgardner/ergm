@@ -90,10 +90,10 @@ st.latex(r'''
 st.write('The linear equation:')
 
 st.latex(r'''
-    a_1s_1 + a_2s_2 + … + a_Ns_N)
+    a_1s_1 + a_2s_2 + … + a_Ns_N
     ''')
 
-st.write('Combines a set of network statistics ${s_1,s_2,…,s_N}$ in proportions determined by set of coefficients ${a_1,a_2,…,a_N}$')
+st.write('combines a set of network statistics ${s_1,s_2,…,s_N}$ in proportions determined by set of coefficients ${a_1,a_2,…,a_N}$')
 
 st.write('If all coefficient values are set to zero then:')
 
