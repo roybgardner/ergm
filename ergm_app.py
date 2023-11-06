@@ -306,6 +306,7 @@ for k,g in enumerate(graph_set):
     ax.set_ylabel('Triangles coefficient')
     ax.set_zlabel('Probability of graph')
     ax.set_title('Graph: ' + str(k))
+    ax.set_box_aspect(aspect=None, zoom=0.8)
     #cbar = fig.colorbar(p,ax=ax)
     #cbar.set_label('Probability of graph', rotation=270)
 
