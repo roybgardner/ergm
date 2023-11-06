@@ -72,36 +72,6 @@ def pr_analysis(coeff_values,non_zero_coeff_values,statistics,label):
     plt.title(label)
     st.pyplot(fig)
 
-        
-st.header('Exploring ERGMs')
-
-st.subheader('Introduction')
-
-st.write('This app is an attempt to understand and explore ERGMs using a set of 3-node undirected graphs as an example. This set has been chosen because it\'s tractable and can be visualised.\
-         There are eight graphs in the set (see below). As the number of nodes increases the number of graphs grows rapidly to the point where the denominator in the equation below cannot be computed.\
-         The number of graphs is $2^{(n\\times(n-1))/2}$ where $n$ is the number of nodes.')
-
-st.write('The probability of observing a graph $g$ that belongs to a set of graphs $G$ is given by:')
-
-st.latex(r'''
-    pr(g|G) = \frac{\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}{\sum\limits_{g=1}^{|G|}\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}
-    ''')
-
-st.write('The linear equation:')
-
-st.latex(r'''
-    a_1s_1 + a_2s_2 + … + a_Ns_N
-    ''')
-
-st.write('combines a set of network statistics ${s_1,s_2,…,s_N}$ in proportions determined by a set of coefficients ${a_1,a_2,…,a_N}$')
-
-st.write('If all coefficient values are set to zero then:')
-
-st.latex(r'''
-    pr(g|G) = \frac{e^0}{\sum\limits_{g=1}^{|G|}e^0} = \frac{1}{|G|}
-    ''')
-
-   
 # Build the set of three node graphs as a sample set for denominator calculation
 # This needs to be sensible
 
@@ -149,6 +119,36 @@ g.add_edge(0,1)
 g.add_edge(0,2)
 g.add_edge(1,2)
 graph_set.append(g)
+        
+st.header('Exploring ERGMs')
+
+st.subheader('Introduction')
+
+st.write('This app is an attempt to understand and explore ERGMs using a set of 3-node undirected graphs as an example. This set has been chosen because it\'s tractable and can be visualised.\
+         There are eight graphs in the set (see below). As the number of nodes increases the number of graphs grows rapidly to the point where the denominator in the equation below cannot be computed.\
+         The number of graphs is $2^{(n\\times(n-1))/2}$ where $n$ is the number of nodes.')
+
+st.write('The probability of observing a graph $g$ that belongs to a set of graphs $G$ is given by:')
+
+st.latex(r'''
+    pr(g|G) = \frac{\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}{\sum\limits_{g=1}^{|G|}\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}
+    ''')
+
+st.write('The linear equation:')
+
+st.latex(r'''
+    a_1s_1 + a_2s_2 + … + a_Ns_N
+    ''')
+
+st.write('combines a set of network statistics ${s_1,s_2,…,s_N}$ in proportions determined by a set of coefficients ${a_1,a_2,…,a_N}$')
+
+st.write('If all coefficient values are set to zero then:')
+
+st.latex(r'''
+    pr(g|G) = \frac{e^0}{\sum\limits_{g=1}^{|G|}e^0} = \frac{1}{|G|}
+    ''')
+
+   
 
 st.subheader('The set of 3-node undirected graphs')
 st.write('Graph titles include the values of the three network statistics used in this analysis:')
@@ -303,8 +303,8 @@ with st.form("joint_all"):
             ax = fig.add_subplot(gs[k%4,k//4])
             
             im = ax.imshow(matrix)
-            ax.set_xlabel(selected_joint.split('-')[0] + ' coefficient')
-            ax.set_ylabel(selected_joint.split('-')[1] + ' coefficient')
+            ax.set_ylabel(selected_joint.split('-')[0] + ' coefficient')
+            ax.set_xlabel(selected_joint.split('-')[1] + ' coefficient')
             fig.colorbar(im, ax=ax)
 
         st.pyplot(fig)
