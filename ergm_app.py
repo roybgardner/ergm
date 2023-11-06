@@ -226,7 +226,7 @@ pr_analysis(coeff_values,non_zero_coeff_values,statistics,'Triangles')
 
 
 with st.form("joint_7"):
-    st.subheader('Joint distributions pairs of statistics for graph 7.')
+    st.subheader('Joint distributions of pairs of statistics for graph 7.')
 
 
     joint_options=["Edges-Triangles", "Edges-Isolates", "Isolates-Triangles"]
@@ -271,8 +271,8 @@ with st.form("joint_7"):
         p = ax.plot_surface(X, Y, matrix, rstride=1, cstride=1, cmap='viridis', edgecolor='none',\
                             antialiased=False,vmin=0,vmax=1.0)
         ax.set_zlim(0,1)
-        ax.set_xlabel(selected_joint.split('-')[0] + ' coefficient')
-        ax.set_ylabel(selected_joint.split('-')[1] + ' coefficient')
+        ax.set_xlabel(selected_joint.split('-')[1] + ' coefficient')
+        ax.set_ylabel(selected_joint.split('-')[0] + ' coefficient')
         ax.set_zlabel('Probability of graph')
         ax.set_box_aspect(aspect=None, zoom=0.8)
         #cbar = fig.colorbar(p,ax=ax)
