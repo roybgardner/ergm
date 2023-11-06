@@ -148,8 +148,6 @@ st.latex(r'''
     pr(g^\prime|G) = \frac{e^0}{\sum\limits_{g=1}^{|G|}e^0} = \frac{1}{|G|}
     ''')
 
-   
-
 st.subheader('The set of 3-node undirected graphs')
 st.write('Graph titles include the values of the three network statistics used in this analysis:')
 st.write('- Number of edges')
@@ -303,6 +301,7 @@ with st.form("joint_all"):
             im = ax.imshow(matrix)
             ax.set_ylabel(selected_joint.split('-')[0] + ' coefficient')
             ax.set_xlabel(selected_joint.split('-')[1] + ' coefficient')
+            ax.set_title('Graph ' + str(k))
             fig.colorbar(im, ax=ax)
 
         st.pyplot(fig)
