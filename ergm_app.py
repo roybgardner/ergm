@@ -140,7 +140,7 @@ st.latex(r'''
     a_1s(g)_1 + a_2s(g)_2 + … + a_Ns(g)_N
     ''')
 
-st.write('combines a set of network statistics ${s(g)_1,s(g)_2,…,s(g)_N}$ of a graph $g$ in proportions determined by a set of coefficients ${a_1,a_2,…,a_N}$')
+st.write('combines a set of network statistics $\{s(g)_1,s(g)_2,…,s(g)_N\}$ of a graph $g$ in proportions determined by a set of coefficients $\{a_1,a_2,…,a_N\}$')
 
 st.write('If all coefficient values are set to zero then all graphs are equally likely:')
 
