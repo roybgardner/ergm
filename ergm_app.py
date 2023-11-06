@@ -75,7 +75,9 @@ def pr_analysis(coeff_values,non_zero_coeff_values,statistics,label):
         
 st.header('Exploring ERGMs')
 
+st.subheader('Introduction')
 
+st.write('This app is an attempt to understand and explore ERGMs using a set of 3-node undirected graphs as an example. This set has been chosen because it\'s tractable and can be visualised.')
 
 st.write('The probability of observing a graph $g$ that belongs to a set of graphs $G$ is given by:')
 
