@@ -264,23 +264,6 @@ with st.form("joint_7"):
 
         st.pyplot(fig)
 
-        m,n = matrix.shape
-        fig = plt.figure(figsize=(16, 8))
-        ax = plt.axes(projection='3d')
-        X, Y = np.meshgrid(non_zero_coeff_values, non_zero_coeff_values)
-        p = ax.plot_surface(X, Y, matrix, rstride=1, cstride=1, cmap='viridis', edgecolor='none',\
-                            antialiased=False,vmin=0,vmax=1.0)
-        ax.set_zlim(0,1)
-        ax.set_xlabel(selected_joint.split('-')[1] + ' coefficient')
-        ax.set_ylabel(selected_joint.split('-')[0] + ' coefficient')
-        ax.set_zlabel('Probability of graph')
-        ax.set_box_aspect(aspect=None, zoom=0.8)
-        #cbar = fig.colorbar(p,ax=ax)
-        #cbar.set_label('Probability of graph', rotation=270)
-
-        st.pyplot(fig)
-
-
 st.subheader('Joint distributions for edge and triangle statistics for all graphs.')
 
 statistics = [get_edges,get_isolates,get_triangles]
