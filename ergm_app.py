@@ -303,8 +303,8 @@ with st.form("joint_all"):
             ax = fig.add_subplot(gs[k%4,k//4])
             
             im = ax.imshow(matrix)
-            ax.set_xlabel('Triangles coefficient')
-            ax.set_ylabel('Edges coefficient')
+            ax.set_xlabel(selected_joint.split('-')[0] + ' coefficient')
+            ax.set_ylabel(selected_joint.split('-')[1] + ' coefficient')
             fig.colorbar(im, ax=ax)
 
         st.pyplot(fig)
