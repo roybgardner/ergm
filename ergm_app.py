@@ -98,7 +98,7 @@ st.write('Combines a set of network statistics ${s_1,s_2,…,s_N}$ in proportion
 st.write('If all coefficient values are set to zero then:')
 
 st.latex(r'''
-    pr(g|G) = \frac{e^0}{\sum\limits_{g=1}^{|G|}e^0)} = \frac{1}{|G|}
+    pr(g|G) = \frac{e^0}{\sum\limits_{g=1}^{|G|}e^0} = \frac{1}{|G|}
     ''')
 
    
@@ -286,21 +286,12 @@ for k,g in enumerate(graph_set):
             pr = round(numerator/denom,3)
             matrix[i,j] = pr
 
-    m,n = matrix.shape
-    ax = fig.add_subplot(gs[k%4,k//4],projection='3d')
-
-    #ax = plt.axes(projection='3d')
-    X, Y = np.meshgrid(non_zero_coeff_values, non_zero_coeff_values)
-    p = ax.plot_surface(X, Y, matrix, rstride=1, cstride=1, cmap='viridis', edgecolor='none',\
-                        antialiased=False,vmin=0,vmax=1.0)
-    ax.set_zlim(0,1)
-    ax.set_xlabel('Edges coefficient')
-    ax.set_ylabel('Triangles coefficient')
-    ax.set_zlabel('Probability of graph')
-    ax.set_title('Graph: ' + str(k))
-    ax.set_box_aspect(aspect=None, zoom=0.8)
-    #cbar = fig.colorbar(p,ax=ax)
-    #cbar.set_label('Probability of graph', rotation=270)
+    ax = fig.add_subplot(gs[k%4,k//4])
+     
+    im = ax.imshow(matrix)
+    ax.set_xlabel('Triangles coefficient')
+    ax.set_ylabel('Edges coefficient')
+    fig.colorbar(im, ax=ax)
 
 st.pyplot(fig)
 
