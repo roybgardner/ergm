@@ -230,7 +230,7 @@ with st.form("joint_7"):
 
 
     joint_options=["Edges-Triangles", "Edges-Isolates", "Isolates-Triangles"]
-    select_joint=st.radio("Select pair", joint, index=0, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, horizontal=False, captions=None, label_visibility="visible")
+    selected_joint=st.radio("Select pair", joint_options, index=0, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, horizontal=False, captions=None, label_visibility="visible")
 
     submitted = st.form_submit_button("Submit")
     if submitted:
@@ -242,11 +242,11 @@ with st.form("joint_7"):
         matrix = np.zeros((len(non_zero_coeff_values),len(non_zero_coeff_values)))
         for i,x in enumerate(non_zero_coeff_values):
             for j,y in enumerate(non_zero_coeff_values):
-                if select_joint == "Edges-Triangles":
+                if selected_joint == "Edges-Triangles":
                     coefficients = [x,0,y]
-                elif select_joint == "Edges-Isolates":
+                elif selected_joint == "Edges-Isolates":
                     coefficients = [x,y,0]
-                elif select_joint == "Isolates-Triangles":
+                elif selected_joint == "Isolates-Triangles":
                     coefficients = [0,x,y]
 
                 denom = get_ergm_denominator(graph_set, coefficients, statistics)
@@ -271,8 +271,8 @@ with st.form("joint_7"):
         p = ax.plot_surface(X, Y, matrix, rstride=1, cstride=1, cmap='viridis', edgecolor='none',\
                             antialiased=False,vmin=0,vmax=1.0)
         ax.set_zlim(0,1)
-        ax.set_xlabel(joint.split('-')[0] + ' coefficient')
-        ax.set_ylabel(joint.split('-')[1] + ' coefficient')
+        ax.set_xlabel(selected_joint.split('-')[0] + ' coefficient')
+        ax.set_ylabel(selected_joint.split('-')[1] + ' coefficient')
         ax.set_zlabel('Probability of graph')
         ax.set_box_aspect(aspect=None, zoom=0.8)
         #cbar = fig.colorbar(p,ax=ax)
