@@ -146,7 +146,7 @@ g.add_edge(0,2)
 g.add_edge(1,2)
 graph_set.append(g)
 
-st.subheader('The set of three node undirected graphs')
+st.subheader('The set of 3-node undirected graphs')
 st.write('Graph titles include the values of the three network statistics used in this analysis:')
 st.write('- Number of edges')
 st.write('- Number of isolates')
@@ -166,7 +166,7 @@ for i,g in enumerate(graph_set):
 st.pyplot(fig)
 
 
-st.subheader('Probability of observing a graph from the set of graphs given some coefficient values')
+st.subheader('Probability of observing a graph from the set of 3-node graphs given some coefficient values')
 st.write('The superheader shows the coefficient values for the three statistics:')
 st.write('Edges = 1.0')
 st.write('Isolates = 0.0')
