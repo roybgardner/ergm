@@ -78,6 +78,11 @@ st.header('Exploring ERGMs')
 st.latex(r'''
     pr(g) \propto \exp(a_1s_1 + a_2s_2 + … + a_Ns_N)
     ''')
+
+st.latex(r'''
+    pr(g|G) = \frac{\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}{\sum\limits_{g=1}^{|G|}\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}
+    ''')
+
     
 # Build the set of three node graphs as a sample set for denominator calculation
 # This needs to be sensible
