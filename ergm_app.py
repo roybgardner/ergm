@@ -79,7 +79,7 @@ st.subheader('Introduction')
 
 st.write('This app is an attempt to understand and explore ERGMs using a set of 3-node undirected graphs as an example. This set has been chosen because it\'s tractable and can be visualised.\
          There are eight graphs in the set (see below). As the number of nodes increases the number of graphs grows rapidly to the point where the denominator in the equation below cannot be computed.\
-         The number of graphs is $2^{(n\times(n-1))/2}$ where $n$ is the number of nodes.')
+         The number of graphs is $2^{(n\\times(n-1))/2}$ where $n$ is the number of nodes.')
 
 st.write('The probability of observing a graph $g$ that belongs to a set of graphs $G$ is given by:')
 
