@@ -128,7 +128,7 @@ st.write('This app is an attempt to understand and explore ERGMs using a set of 
          There are eight graphs in the set (see below). As the number of vertices increases the number of graphs grows rapidly to the point where the denominator in the equation below cannot be computed.\
          The number of graphs is $2^{(n\\times(n-1))/2}$ where $n$ is the number of vertices.')
 
-st.write('The probability of observing a graph $g^\'$ that belongs to a set of graphs $G$ is given by:')
+st.write('The probability of observing a graph $g^\prime$ that belongs to a set of graphs $G$ is given by:')
 
 st.latex(r'''
     pr(g^'|G) = \frac{\exp(a_1s(g^')_1 + a_2s(g^')_2 + … + a_Ns(g^')_N)}{\sum\limits_{g=1}^{|G|}\exp(a_1s(g)_1 + a_2s(g)_2 + … + a_Ns(g)_N)}
