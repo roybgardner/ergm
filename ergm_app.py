@@ -142,7 +142,7 @@ st.latex(r'''
 
 st.write('combines a set of network statistics ${s_1,s_2,…,s_N}$ in proportions determined by a set of coefficients ${a_1,a_2,…,a_N}$')
 
-st.write('If all coefficient values are set to zero then:')
+st.write('If all coefficient values are set to zero then all graphs are equally likely:')
 
 st.latex(r'''
     pr(g|G) = \frac{e^0}{\sum\limits_{g=1}^{|G|}e^0} = \frac{1}{|G|}
