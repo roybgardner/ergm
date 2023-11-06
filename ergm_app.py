@@ -148,7 +148,7 @@ st.latex(r'''
     pr(g^\prime|G) = \frac{e^0}{\sum\limits_{g=1}^{|G|}e^0} = \frac{1}{|G|}
     ''')
 
-st.subheader('The set of 3-node undirected graphs')
+st.subheader('The set of 3-vertex undirected graphs')
 st.write('Graph titles include the values of the three network statistics used in this analysis:')
 st.write('- Number of edges')
 st.write('- Number of isolates')
