@@ -154,7 +154,7 @@ st.subheader('The set of 3-node undirected graphs')
 st.write('Graph titles include the values of the three network statistics used in this analysis:')
 st.write('- Number of edges')
 st.write('- Number of isolates')
-st.write('- Number of triangles')
+st.write('- Number of triangles (measured as the number of vertices in triangles)')
 
 
 fig = plt.figure(figsize=(8,4),layout="constrained")
