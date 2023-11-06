@@ -145,7 +145,7 @@ st.write('combines a set of network statistics $\{s(g)_1,s(g)_2,…,s(g)_N\}$ of
 st.write('If all coefficient values are set to zero then all graphs are equally likely:')
 
 st.latex(r'''
-    pr(g|G) = \frac{e^0}{\sum\limits_{g=1}^{|G|}e^0} = \frac{1}{|G|}
+    pr(g^\prime|G) = \frac{e^0}{\sum\limits_{g=1}^{|G|}e^0} = \frac{1}{|G|}
     ''')
 
    
