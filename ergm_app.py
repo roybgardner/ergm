@@ -45,6 +45,33 @@ def coeffs_to_string(coefficients):
         if i < len(coefficients) - 1:
             s += ', '
     return s
+
+def pr_analysis(coeff_values,non_zero_coeff_values,statistics,label):    
+    pr_dict = {}
+    for t in coeff_values:
+        # Other coefficients are 0
+        coefficients = [t[0],t[1],t[2]]
+        denom = get_ergm_denominator(graph_set, coefficients, statistics)
+
+        for i,g in enumerate(graph_set):
+            numerator = get_ergm_weight(g, coefficients, statistics)
+            pr = round(numerator/denom,3)
+            if i in pr_dict:
+                pr_dict[i].append(pr)
+            else:
+                pr_dict[i] = [pr]
+    fig = plt.figure(figsize=(8,4),layout="constrained")
+    x = non_zero_coeff_values
+    for k,v in pr_dict.items():
+        plt.plot(x,v,label=str(k))
+        plt.scatter(x,v)
+    #plt.ylim(0,1)
+    plt.xlabel('Value of ' + label + ' statistic coefficient')
+    plt.ylabel('Pr of graph')
+    plt.legend()
+    plt.title(label)
+    st.pyplot(fig)
+
         
 st.header('Exploring ERGMs')
     
@@ -144,32 +171,8 @@ fig.suptitle(coeffs_to_string(coefficients))
 st.pyplot(fig)
 
 st.subheader('Effects of coefficient of single statistic on probability of observing a graph.')
+st.write('The coeeficients of the other two statistics are set to zero.')
 
-def pr_analysis(coeff_values,non_zero_coeff_values,statistics,label):    
-    pr_dict = {}
-    for t in coeff_values:
-        # Other coefficients are 0
-        coefficients = [t[0],t[1],t[2]]
-        denom = get_ergm_denominator(graph_set, coefficients, statistics)
-
-        for i,g in enumerate(graph_set):
-            numerator = get_ergm_weight(g, coefficients, statistics)
-            pr = round(numerator/denom,3)
-            if i in pr_dict:
-                pr_dict[i].append(pr)
-            else:
-                pr_dict[i] = [pr]
-    fig = plt.figure(figsize=(8,4),layout="constrained")
-    x = non_zero_coeff_values
-    for k,v in pr_dict.items():
-        plt.plot(x,v,label=str(k))
-        plt.scatter(x,v)
-    #plt.ylim(0,1)
-    plt.xlabel('Value of ' + label + ' statistic coefficient')
-    plt.ylabel('Pr of graph')
-    plt.legend()
-    plt.title(label)
-    st.pyplot(fig)
 
 statistics = [get_edges,get_isolates,get_triangles]
 
