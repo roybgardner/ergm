@@ -258,8 +258,8 @@ with st.form("joint_7"):
         fig = plt.figure(figsize=(8, 8))
         plt.imshow(matrix)
         plt.colorbar()
-        plt.ylabel('Edges coefficent')
-        plt.xlabel('Triangles coefficent')
+        plt.ylabel(selected_joint.split('-')[0] + ' coefficient')
+        plt.xlabel(selected_joint.split('-')[1] + ' coefficient')
         #plt.clim(0,1)
 
         st.pyplot(fig)
