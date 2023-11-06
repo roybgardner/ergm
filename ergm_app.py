@@ -176,7 +176,7 @@ with st.form("coefficients"):
     st.write('Number of edges')
     st.write('Number of isolates')
     st.write('Number of triangles')
-    st.write('In the default condition all coefficient values are set to zero and all graphs in the set are equally likely to be observed, i.e., $Pr(g|G)=0.125$')
+    st.write('In the default condition, all coefficient values are set to zero and all graphs in the set are equally likely to be observed, i.e., $Pr(g|G)=0.125$')
    
     statistics = [get_edges,get_isolates,get_triangles]
 
@@ -268,6 +268,7 @@ with st.form("joint_all"):
 
 
     st.subheader('Joint distributions of pairs of statistics for all graphs.')
+    st.write('Note that the colorbar range is subplot specific.')
 
     joint_options=["Edges-Triangles", "Edges-Isolates", "Isolates-Triangles"]
     selected_joint=st.radio("Select pair", joint_options, index=0, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, horizontal=False, captions=None, label_visibility="visible")
