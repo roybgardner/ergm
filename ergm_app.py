@@ -76,17 +76,28 @@ def pr_analysis(coeff_values,non_zero_coeff_values,statistics,label):
 st.header('Exploring ERGMs')
 
 
-st.latex(r'''
-    pr(g) \propto \exp(a_1s_1 + a_2s_2 + … + a_Ns_N)
-    ''')
 
-st.write('The probability of observing a graph $g$ that belongs to a set of graphs is given by:')
+st.write('The probability of observing a graph $g$ that belongs to a set of graphs $G$ is given by:')
 
 st.latex(r'''
     pr(g|G) = \frac{\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}{\sum\limits_{g=1}^{|G|}\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}
     ''')
 
-    
+st.write('The linear equation:')
+
+st.latex(r'''
+    a_1s_1 + a_2s_2 + … + a_Ns_N)
+    ''')
+
+st.write('Combines a set of network statistics ${s_1,s_2,…,s_N}$ in proportions determined by set of coefficients ${a_1,a_2,…,a_N}$')
+
+st.write('If the coefficient values are set to zero then:')
+
+st.latex(r'''
+    pr(g|G) = \frac{e^0}{\sum\limits_{g=1}^{|G|}\e^0)} = \frac{1}{|G|}}
+    ''')
+
+   
 # Build the set of three node graphs as a sample set for denominator calculation
 # This needs to be sensible
 
