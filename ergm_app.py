@@ -74,6 +74,10 @@ def pr_analysis(coeff_values,non_zero_coeff_values,statistics,label):
 
         
 st.header('Exploring ERGMs')
+
+st.latex(r'''
+    pr(g) \propto \exp(a_1s_1 + a_2s_2 + … + a_Ns_N)
+    ''')
     
 # Build the set of three node graphs as a sample set for denominator calculation
 # This needs to be sensible
