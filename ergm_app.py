@@ -128,19 +128,19 @@ st.write('This app is an attempt to understand and explore ERGMs using a set of 
          There are eight graphs in the set (see below). As the number of vertices increases the number of graphs grows rapidly to the point where the denominator in the equation below cannot be computed.\
          The number of graphs is $2^{(n\\times(n-1))/2}$ where $n$ is the number of vertices.')
 
-st.write('The probability of observing a graph $g$ that belongs to a set of graphs $G$ is given by:')
+st.write('The probability of observing a graph $g^\'$ that belongs to a set of graphs $G$ is given by:')
 
 st.latex(r'''
-    pr(g|G) = \frac{\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}{\sum\limits_{g=1}^{|G|}\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}
+    pr(g^'|G) = \frac{\exp(a_1s(g^')_1 + a_2s(g^')_2 + … + a_Ns(g^')_N)}{\sum\limits_{g=1}^{|G|}\exp(a_1s(g)_1 + a_2s(g)_2 + … + a_Ns(g)_N)}
     ''')
 
 st.write('The linear equation:')
 
 st.latex(r'''
-    a_1s_1 + a_2s_2 + … + a_Ns_N
+    a_1s(g)_1 + a_2s(g)_2 + … + a_Ns(g)_N
     ''')
 
-st.write('combines a set of network statistics ${s_1,s_2,…,s_N}$ in proportions determined by a set of coefficients ${a_1,a_2,…,a_N}$')
+st.write('combines a set of network statistics ${s(g)_1,s(g)_2,…,s(g)_N}$ of a graph $g$ in proportions determined by a set of coefficients ${a_1,a_2,…,a_N}$')
 
 st.write('If all coefficient values are set to zero then all graphs are equally likely:')
 
