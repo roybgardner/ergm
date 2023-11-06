@@ -264,35 +264,49 @@ with st.form("joint_7"):
 
         st.pyplot(fig)
 
-st.subheader('Joint distributions for edge and triangle statistics for all graphs.')
-
-statistics = [get_edges,get_isolates,get_triangles]
-non_zero_coeff_values = np.arange(0,1.1,0.1)
-
-fig = plt.figure(figsize=(20,20))
-
-gs = GridSpec(4, 2, figure=fig)
-
-for k,g in enumerate(graph_set):
-
-    matrix = np.zeros((len(non_zero_coeff_values),len(non_zero_coeff_values)))
+with st.form("joint_all"):
 
 
-    for i,x in enumerate(non_zero_coeff_values):
-        for j,y in enumerate(non_zero_coeff_values):
-            coefficients = [x,0,y]
-            denom = get_ergm_denominator(graph_set, coefficients, statistics)
-            numerator = get_ergm_weight(g, coefficients, statistics)
-            pr = round(numerator/denom,3)
-            matrix[i,j] = pr
+    st.subheader('Joint distributions of edge and triangle statistics for all graphs.')
 
-    ax = fig.add_subplot(gs[k%4,k//4])
-     
-    im = ax.imshow(matrix)
-    ax.set_xlabel('Triangles coefficient')
-    ax.set_ylabel('Edges coefficient')
-    fig.colorbar(im, ax=ax)
+    joint_options=["Edges-Triangles", "Edges-Isolates", "Isolates-Triangles"]
+    selected_joint=st.radio("Select pair", joint_options, index=0, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, horizontal=False, captions=None, label_visibility="visible")
 
-st.pyplot(fig)
+
+    submitted = st.form_submit_button("Submit")
+    if submitted:
+        statistics = [get_edges,get_isolates,get_triangles]
+        non_zero_coeff_values = np.arange(0,1.1,0.1)
+
+        fig = plt.figure(figsize=(20,20))
+
+        gs = GridSpec(4, 2, figure=fig)
+
+        for k,g in enumerate(graph_set):
+
+            matrix = np.zeros((len(non_zero_coeff_values),len(non_zero_coeff_values)))
+
+
+            for i,x in enumerate(non_zero_coeff_values):
+                for j,y in enumerate(non_zero_coeff_values):
+                    if selected_joint == "Edges-Triangles":
+                        coefficients = [x,0,y]
+                    elif selected_joint == "Edges-Isolates":
+                        coefficients = [x,y,0]
+                    elif selected_joint == "Isolates-Triangles":
+                        coefficients = [0,x,y]
+                    denom = get_ergm_denominator(graph_set, coefficients, statistics)
+                    numerator = get_ergm_weight(g, coefficients, statistics)
+                    pr = round(numerator/denom,3)
+                    matrix[i,j] = pr
+
+            ax = fig.add_subplot(gs[k%4,k//4])
+            
+            im = ax.imshow(matrix)
+            ax.set_xlabel('Triangles coefficient')
+            ax.set_ylabel('Edges coefficient')
+            fig.colorbar(im, ax=ax)
+
+        st.pyplot(fig)
 
 
