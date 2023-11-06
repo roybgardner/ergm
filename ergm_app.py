@@ -77,7 +77,9 @@ st.header('Exploring ERGMs')
 
 st.subheader('Introduction')
 
-st.write('This app is an attempt to understand and explore ERGMs using a set of 3-node undirected graphs as an example. This set has been chosen because it\'s tractable and can be visualised.')
+st.write('This app is an attempt to understand and explore ERGMs using a set of 3-node undirected graphs as an example. This set has been chosen because it\'s tractable and can be visualised.\
+         There are eight graphs in the set (see below). As the number of nodes increases the number of graphs grows rapidly to the point where the denominator in the equation below cannot be computed.\
+         The number of graphs is $2^{(n\times(n-1))/2}$ where $n$ is the number of nodes.')
 
 st.write('The probability of observing a graph $g$ that belongs to a set of graphs $G$ is given by:')
 
@@ -170,7 +172,7 @@ st.pyplot(fig)
 
 with st.form("coefficients"):
     st.subheader('Probability of observing a graph from the set of 3-node graphs given some coefficient values')
-    st.write('Use the form below to set the coefficient values for three network statistics:')   
+    st.write('Use the form below to set the coefficient values for the three network statistics:')   
     st.write('Number of edges')
     st.write('Number of isolates')
     st.write('Number of triangles')
@@ -182,7 +184,7 @@ with st.form("coefficients"):
     isolates=st.slider("Select isolates coefficient", min_value=0, max_value=1, value=0, step=None, format=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible")
     triangles=st.slider("Select triangles coefficient", min_value=0, max_value=1, value=0, step=None, format=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible")
 
-# Every form must have a submit button.
+    # Every form must have a submit button.
     submitted = st.form_submit_button("Submit")
     if submitted:
 
