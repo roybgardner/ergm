@@ -131,7 +131,7 @@ st.write('This app is an attempt to understand and explore ERGMs using a set of 
 st.write('The probability of observing a graph $g^\prime$ that belongs to a set of graphs $G$ is given by:')
 
 st.latex(r'''
-    pr(g^'|G) = \frac{\exp(a_1s(g^')_1 + a_2s(g^')_2 + … + a_Ns(g^')_N)}{\sum\limits_{g=1}^{|G|}\exp(a_1s(g)_1 + a_2s(g)_2 + … + a_Ns(g)_N)}
+    pr(g^'|G) = \frac{\exp(a_1s(g^\prime)_1 + a_2s(g^\prime)_2 + … + a_Ns(g^\prime)_N)}{\sum\limits_{g=1}^{|G|}\exp(a_1s(g)_1 + a_2s(g)_2 + … + a_Ns(g)_N)}
     ''')
 
 st.write('The linear equation:')
