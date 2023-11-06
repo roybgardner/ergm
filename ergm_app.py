@@ -80,7 +80,8 @@ st.latex(r'''
     pr(g) \propto \exp(a_1s_1 + a_2s_2 + … + a_Ns_N)
     ''')
 
-st.write{'The probability of observing a graph $g$'}
+st.write('The probability of observing a graph $g$ that belongs to a set of graphs is given by:')
+
 st.latex(r'''
     pr(g|G) = \frac{\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}{\sum\limits_{g=1}^{|G|}\exp(a_1s_1 + a_2s_2 + … + a_Ns_N)}
     ''')
