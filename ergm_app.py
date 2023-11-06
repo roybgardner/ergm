@@ -180,9 +180,9 @@ with st.form("coefficients"):
    
     statistics = [get_edges,get_isolates,get_triangles]
 
-    edges=st.slider("Select edges coefficient", min_value=0, max_value=1, value=0, step=0.1, format=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible")
-    isolates=st.slider("Select isolates coefficient", min_value=0, max_value=1, value=0, step=0.1, format=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible")
-    triangles=st.slider("Select triangles coefficient", min_value=0, max_value=1, value=0, step=0.1, format=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible")
+    edges=st.slider("Select edges coefficient", min_value=0.0, max_value=1.0, value=0, step=0.1, format=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible")
+    isolates=st.slider("Select isolates coefficient", min_value=0.0, max_value=1.0, value=0, step=0.1, format=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible")
+    triangles=st.slider("Select triangles coefficient", min_value=0.0, max_value=1.0, value=0, step=0.1, format=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, label_visibility="visible")
 
     # Every form must have a submit button.
     submitted = st.form_submit_button("Submit")
