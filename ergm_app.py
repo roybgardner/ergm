@@ -203,8 +203,8 @@ with st.form("coefficients"):
             
         st.pyplot(fig)
 
-st.subheader('Effects of coefficient of single statistic on probability of observing a graph.')
-st.write('The coefficients of the other two statistics are set to zero.')
+st.subheader('Effects of coefficient of a single statistic on the probability of observing a graph.')
+st.write('The coefficients of the remaining statistics are set to zero.')
 
 
 statistics = [get_edges,get_isolates,get_triangles]
