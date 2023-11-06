@@ -267,7 +267,7 @@ with st.form("joint_7"):
 with st.form("joint_all"):
 
 
-    st.subheader('Joint distributions of edge and triangle statistics for all graphs.')
+    st.subheader('Joint distributions of pairs of statistics for all graphs.')
 
     joint_options=["Edges-Triangles", "Edges-Isolates", "Isolates-Triangles"]
     selected_joint=st.radio("Select pair", joint_options, index=0, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False, horizontal=False, captions=None, label_visibility="visible")
