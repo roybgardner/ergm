@@ -163,7 +163,7 @@ for i,g in enumerate(graph_set):
     ax = fig.add_subplot(gs[i//4,i%4])
     nx.draw_networkx(g,node_color='pink')
     title = 'Graph ' + str(i) + ': ' + str(get_edges(g)) + ', ' + str(get_isolates(g)) + \
-        ', ' + str(get_triangles(g))
+        ', ' + str(int(get_triangles(g)))
     ax.set_title(title)
 st.pyplot(fig)
 
