@@ -253,7 +253,7 @@ with st.form("joint_7"):
         fig = plt.figure(figsize=(8, 8))
         plt.imshow(matrix)
         plt.colorbar()
-        plt.yticks(non_zero_coeff_values)
+        plt.yticks(range(0,10),non_zero_coeff_values)
         plt.ylabel(selected_joint.split('-')[0] + ' coefficient')
         plt.xlabel(selected_joint.split('-')[1] + ' coefficient')
         #plt.clim(0,1)
