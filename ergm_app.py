@@ -232,6 +232,7 @@ with st.form("joint_7"):
         statistics = [get_edges,get_isolates,get_triangles]
         g = graph_set[7]
         non_zero_coeff_values = np.arange(0,1.1,0.1)
+
         zero_values = np.zeros(len(non_zero_coeff_values))
 
         matrix = np.zeros((len(non_zero_coeff_values),len(non_zero_coeff_values)))
@@ -253,7 +254,8 @@ with st.form("joint_7"):
         fig = plt.figure(figsize=(8, 8))
         plt.imshow(matrix)
         plt.colorbar()
-        plt.yticks(range(0,len(non_zero_coeff_values)),non_zero_coeff_values)
+        plt.yticks(range(0,len(non_zero_coeff_values)),[round(v,1) for v in non_zero_coeff_values])
+        plt.xticks(range(0,len(non_zero_coeff_values)),[round(v,1) for v in non_zero_coeff_values])
         plt.ylabel(selected_joint.split('-')[0] + ' coefficient')
         plt.xlabel(selected_joint.split('-')[1] + ' coefficient')
         #plt.clim(0,1)
