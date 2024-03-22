@@ -252,10 +252,11 @@ with st.form("joint_7"):
 
 
         fig = plt.figure(figsize=(8, 8))
+        tick_labels = [round(v,1) for v in non_zero_coeff_values]
         plt.imshow(matrix)
         plt.colorbar()
-        plt.yticks(range(0,len(non_zero_coeff_values)),[round(v,1) for v in non_zero_coeff_values])
-        plt.xticks(range(0,len(non_zero_coeff_values)),[round(v,1) for v in non_zero_coeff_values])
+        plt.yticks(range(0,len(non_zero_coeff_values)),tick_labels)
+        plt.xticks(range(0,len(non_zero_coeff_values)),tick_labels)
         plt.ylabel(selected_joint.split('-')[0] + ' coefficient')
         plt.xlabel(selected_joint.split('-')[1] + ' coefficient')
         #plt.clim(0,1)
@@ -276,8 +277,9 @@ with st.form("joint_all"):
     if submitted:
         statistics = [get_edges,get_isolates,get_triangles]
         non_zero_coeff_values = np.arange(0,1.1,0.1)
-
+        
         fig = plt.figure(figsize=(20,20))
+        tick_labels = [round(v,1) for v in non_zero_coeff_values]
 
         gs = GridSpec(4, 2, figure=fig)
 
@@ -302,6 +304,8 @@ with st.form("joint_all"):
             ax = fig.add_subplot(gs[k%4,k//4])
             
             im = ax.imshow(matrix)
+            ax.set_yticks(range(0,len(non_zero_coeff_values)),tick_labels)
+            ax.set_xticks(range(0,len(non_zero_coeff_values)),tick_labels)
             ax.set_ylabel(selected_joint.split('-')[0] + ' coefficient')
             ax.set_xlabel(selected_joint.split('-')[1] + ' coefficient')
             ax.set_title('Graph ' + str(k))
